@@ -1,0 +1,27 @@
+8、假设有如下声明：
+
+float apple[10],
+float apple_tree[10][5],
+float *pf,
+float weight = 2.2;
+int i = 3;
+
+则下列语句中那些是正确的，哪些是错误的？原因是什么？
+
+a. apple[2] = weight;       正确    将 weight 的值赋给数组 apple 的第 3 项
+
+b. scanf(“%f”, &apple);     错误    获取的是数组本身的地址
+   scanf(“%f”, &apple[0]);      正确    输入一个浮点数，将其赋值给数组 apple 的第一项
+   scanf(“%f”, apple);      正确    数组名 = 数组第一个元素的地址
+
+c. apple = weight;      错误    weight 只能给数组中的某一项赋值，无法给数组整体赋值
+
+d. printf(“%f”, apple[3]);      正确    打印数组 apple 的第 4 项
+
+e. apple_tree[4][4] = apple[3];     正确
+
+f. apple_tree[5] = apple;       错误
+
+g. pf = weight;     错误    指针 pf 指向一个地址而不是值
+
+h. pf = apple;      正确    指针 pf 指向数组 apple

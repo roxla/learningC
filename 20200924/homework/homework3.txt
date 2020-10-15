@@ -1,0 +1,7 @@
+struct Month
+{
+    char name_short[4];
+    char name[15];
+    unsigned int days;
+    unsigned int num;
+};

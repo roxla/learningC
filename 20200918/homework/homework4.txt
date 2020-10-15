@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main(void)
+{
+    int ref[] = {8, 4, 0, 2};
+    int *ptr;
+    int index;
+    for (index = 0, ptr = ref; index < 4; index++, ptr++)
+        printf("%d %d\n", ref[index], *ptr);
+    
+    return 0;
+}
+
+程序打印：
+8 8
+4 4
+0 0
+2 2
+
+ptr 是指向数组 ref 的指针
+ptr 内存储的是数组 ref 首元素的地址
+ptr++ 等于数组 ref 首元素地址后移一位，相当于遍历数组 ref

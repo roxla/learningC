@@ -1,0 +1,24 @@
+分析以下结构所占的存储空间大小：
+struct animals
+{
+    char dog;
+    unsigned long cat;
+    unsigned short pig;
+    char fox;
+};
+
+结构体的大小由结构体内最大的那个类型决定，并且最大不超过4（32位）8（64位）
+
+64位
+char dog = 8 char 1字节，但作为首位，需要补成8字节来对齐
+unsigned long = 8
+unsigned short pig = 2
+char fox = 1
+8 + 8 + 8 = 24
+
+32位
+char dog = 4
+unsigned long = 4
+unsigned short pig = 2
+char fox = 1
+4 + 4 + 4 = 12

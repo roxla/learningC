@@ -1,0 +1,3 @@
+int 分 long int 和 short int, 老式编译器默认 int 是 long 还是 short 有分歧。
+现在的一般编译器默认 int 是 long int ,是 32 位。 unsigned int 是 32位 无符号整型。
+uint32_t 看起来更明确，u 是 unsigned ，int32 是 32 位整型，t 是 type 。这样定义也便于今后发展，例如 uint64_t , uint128_t. 可扩展到 64位，128位。

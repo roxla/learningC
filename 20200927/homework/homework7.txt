@@ -1,0 +1,11 @@
+void recur(int a[ ], int k)
+{
+    int tmp;
+    if( ___k > 1___ )
+    {
+        recur( __a + 1___, __k - 2___ );
+        tmp = a[0];
+        a[0] = a[k-1];
+        a[k-1] = tmp;
+    }
+}

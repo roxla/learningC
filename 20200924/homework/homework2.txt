@@ -1,0 +1,9 @@
+struct node
+{
+    char itable;
+    int num[20]=”123”;
+    char * togs;
+};
+int x;
+
+创建结构体模板不能给其中的一项赋值

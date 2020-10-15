@@ -1,0 +1,8 @@
+#ifndef SOME_HEADER_H_
+#define SOME_HEADER_H_
+… …
+#endif
+
+如果没定义 SOME_HEADER_H_，则立刻定义 SOME_HEADER_H_
+头文件有时不可避免被多个文件包含的，可能就会出现重复现象
+头文件可使用上述内容，避免头文件被重复加入编译

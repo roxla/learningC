@@ -1,0 +1,6 @@
+#include"stdio.h" / #include<stdio.h>
+int main(void){}
+float g, h;
+g = ?e21;
+printf("%f\n", tax);
+return 0;

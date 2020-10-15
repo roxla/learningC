@@ -1,0 +1,21 @@
+假设有以下说明和定义：
+typedef union
+{
+    long i;
+    int k[5];
+    char c;
+} fruit;
+struct creature
+{
+    short cat;
+    fruit apple;
+    double dog;
+};
+fruit berry;
+则语句printf("%d", sizeof(struct creature)+sizeof(berry));的执行结果是？
+
+32位
+4 * 4 + 4 = 20;
+
+64位
+8 * 3 + 8 = 32; 

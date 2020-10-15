@@ -1,0 +1,11 @@
+下面每种情况中*ptr 和*(ptr+2)的值分别是什么？
+
+a)
+int *ptr;
+int torf[2][2] = {12, 14, 16};
+ptr = torf[0];
+
+b)
+int *ptr;
+int fort[2][2] = {{12}, {14, 16}};
+ptr = fort[0];

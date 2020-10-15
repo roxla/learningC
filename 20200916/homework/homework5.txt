@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main(void)
+{
+    int a, b, c, d;
+    a = 10;
+    b = a++;
+    c = ++a;
+    d = 10 * a++;
+    printf("b, c, d: % d, % d, % d", b, c, d);
+    return 0;
+}
+
+b = a++    先运行 b = a ,再运行 a++    b = 10 a = 11;
+c = ++a    先运行 ++a ,再运行 c = a    c = 12 a = 12;
+d = 10 * a++   先运行 a * 10 ,再运行 d = a ,然后运行 a++    d = 120 a = 13;

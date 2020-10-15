@@ -1,0 +1,12 @@
+分析以下代码的输出结果并解释原因
+void get_memory(char **p) // 以二级指针形式接收指针的地址
+{
+    *p = "hello world“; // 传递指针本身的地址来修改指针本身的指向
+}
+
+void Test(void)
+{
+    char *str = NULL;
+    get_memory(&str);  // 调用函数，在函数中修改指针的指向
+    printf(“%s\n”, str); //输出 hello world
+}
