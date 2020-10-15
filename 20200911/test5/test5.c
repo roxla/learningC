@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
 
 int main(void)
 {
@@ -22,3 +22,7 @@ int main(void)
 //     printf("strncat: %s\n", str);
 //     return 0;
 // }
+
+// 4.拼接字符串
+// char str4[20] = "abc:"; // 20-4-1 = 最大15个字符
+// strncat(str4, str2, sizeof(str4) - strlen(str4) - 1);
