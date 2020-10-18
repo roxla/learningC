@@ -23,7 +23,7 @@ int open_lcd(void);
 // 关闭LCD
 void close_lcd(void);
 // 显示全屏ebm图片
-int show_pic_full(char *pathname);
+int show_pic_full(const char *pathname);
 
 /*************** 触摸屏操作函数声明 ***************/
 // 获取xy坐标(通过地址传递，修改两个变量数据)
@@ -42,7 +42,9 @@ int main(void)
 
     /****** 2.程序逻辑代码 *****/
     int pos_x, pos_y, length, i = -1;
-    char pic_arr[][10] = {"1.ebm", "2.ebm", "3.ebm", "4.ebm", "5.ebm", "6.ebm", "7.ebm"};
+    // 图片名称数组 
+    // 存放 (const char *) 类型的数组，定义为 const char *[]
+    const char *pic_arr[] = {"1.ebm", "2.ebm", "3.ebm", "4.ebm", "5.ebm", "6.ebm", "7.ebm"};
     length = sizeof(pic_arr) / sizeof(pic_arr[0]); // 计算数组内元素个数
     while (1)
     {
@@ -138,12 +140,12 @@ void get_xy(int *x, int *y)
     }
 }
 
-int show_pic_full(char *pathname)
+int show_pic_full(const char *pathname)
 {
     // 拼接图片路径
     char pic_name[20] = "pic/";
     strncat(pic_name, pathname, sizeof(pic_name) - strlen(pathname) - 1);
-    // printf("%s\n", pic_name);
+    printf("%s\n", pic_name);
     // 打开ebm图片文件
     int ebm_fd;
     ebm_fd = open(pic_name, O_RDONLY);

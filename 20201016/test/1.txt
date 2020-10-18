@@ -1,0 +1,16 @@
+asndoanpndq
+anfoiqnanfqpfq
+anfiqonfoalasinqfiaf
+aqnfqionwpfnpq
+anfpqnagqmpoqq
+asfgagfghdrgasa
+
+	// 定义一个结构体指针
+	struct student *p_Jack = &Jack;
+	// printf("%d\n", (*p_Jack).num);
+	// printf("%c\n", (*p_Jack).sex);
+	// printf("%s\n", (*p_Jack).name);
+
+	printf("%d\n", p_Jack->num);
+	printf("%c\n", p_Jack->sex);
+	printf("%s\n", p_Jack->name);
