@@ -42,7 +42,7 @@ void close_ts(void);
 
 /*************** 目录操作函数声明 ***************/
 // 打开目录文件并获取图片文件
-int get_pic_list(char (*list)[strlen(PIC_PATH) + 257], unsigned int *len);
+int get_pic_list(char (*list)[strlen(PIC_PATH) + 257]);
 // 以某个字符串为分割符分割字符串，并返回最后一个字符串
 char *cutOut(char str[], const char *delim, char **catalog); // 参数 要分割的字符串 分割符 返回的指针的地址
 
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
     /*************** 变量定义 ***************/
     int i = -1;
     int pos_x, pos_y;
-    unsigned int length;
+    int length;
 
     char(*pic_list)[strlen(PIC_PATH) + 257] = calloc(PIC_NUM, strlen(PIC_PATH) + 257); // 直接使用ep->d_name进行拼接需要的空间为 256 + 1 (最后一位用于存储'\0')
     if (pic_list == NULL)
@@ -67,8 +67,8 @@ int main(int argc, char const *argv[])
     open_ts();
 
     /****** 2.获取图片列表 *****/
-    get_pic_list(pic_list, &length);
-    // printf("%d\n", length);
+    length = get_pic_list(pic_list);
+    printf("%d\n", length);
     /****** 3.程序逻辑代码 *****/
     if (length) // 实际存入的图片数量不为0时执行显示图片
     {
@@ -107,14 +107,14 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-// 打开目录文件并获取图片文件(通过地址传递，获取实际存入的图片数量)
-int get_pic_list(char (*list)[strlen(PIC_PATH) + 257], unsigned int *len)
+// 打开目录文件并获取图片文件
+int get_pic_list(char (*list)[strlen(PIC_PATH) + 257])
 {
     /*************** 变量定义 ***************/
     int i = 0;
     char name[256];
     char *catalog;
-    bool y = false, n = false;
+    bool pic_file = false;
 
     /*************** 目录操作函数 ***************/
 
@@ -123,7 +123,7 @@ int get_pic_list(char (*list)[strlen(PIC_PATH) + 257], unsigned int *len)
     if (dp == NULL)
     {
         perror("stat failed");
-        return 1;
+        return 0;
     }
 
     struct dirent *ep = NULL;
@@ -144,22 +144,21 @@ int get_pic_list(char (*list)[strlen(PIC_PATH) + 257], unsigned int *len)
             if (i >= PIC_NUM)
                 break;
             snprintf(list[i], sizeof(list[i]), "%s/%s", PIC_PATH, ep->d_name);
-            printf("%s\n", ep->d_name);
-            y = true;
+            // printf("%s\n", ep->d_name);
+            pic_file = true;
             i++;
         }
     }
 
-    if (!(y || n))
+    if (!pic_file)
     {
         printf("File not found\n");
     };
-    *len = i;
 
     /*************** 关闭文件夹  ***************/
     closedir(dp);
 
-    return 0;
+    return i;
 }
 
 // 以某个字符串为分割符分割字符串，并返回最后一个字符串
