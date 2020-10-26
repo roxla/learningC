@@ -13,13 +13,14 @@ struct sl_list
 
 // 初始化单向链表
 struct sl_list *link_list_init(void);
-// 打印链表所有数据（遍历）
-void link_list_show(struct sl_list *head);
 // 添加数据到链表
 int link_list_add(int new_data, struct sl_list *head);
-int link_list_add_tail(int new_data, struct sl_list *head);
 // 删除指定的数据节点
 int link_list_del(int del_data, struct sl_list *head);
+// 翻转链表
+void turn_list(struct sl_list *head);
+// 打印链表所有数据（遍历）
+void link_list_show(struct sl_list *head);
 
 int main(int argc, char const *argv[])
 {
@@ -34,27 +35,20 @@ int main(int argc, char const *argv[])
         scanf("%d", &num);
         while (getchar() != '\n')
             ;
-
         if (num > 0)
         {
             // 插入该数据
-            // link_list_add(num, head);
-            link_list_add_tail(num, head);
-        }
-        else if (num < 0)
-        {
-            // 删除该数据
-            while (link_list_del(-num, head))
-                link_list_del(-num, head);
+            link_list_add(num, head);
         }
         else
         {
-            // 退出程序
-            return 1;
+            turn_list(head);
         }
+
         // 显示链表所有数据
         link_list_show(head);
     }
+
     return 0;
 }
 
@@ -75,28 +69,28 @@ struct sl_list *link_list_init(void)
     return head;
 }
 
-// 添加数据到链表尾（今晚作业）
-int link_list_add_tail(int new_data, struct sl_list *head)
+// 添加数据到链表
+int link_list_add(int new_data, struct sl_list *head)
 {
-    // A. 新节点分配堆空间
+    // a. 给新节点分配一个堆空间
     struct sl_list *new_node = malloc(sizeof(struct sl_list));
     if (new_node == NULL)
     {
         perror("new_node malloc failed");
         return 1;
     }
-    // B. 把数据给入新节点数据域
-    new_node->data = new_data;
-    struct sl_list *pos = head;
-    // C. 找出尾节点（遍历链表，找出指针域指向NULL的节点）
-    while (pos->next)
-        pos = pos->next;
 
-    // D. 修改指针
-    // 1. 新节点指针域，指向尾节点的指针域（偷）
-    new_node->next = pos->next;
-    // 2. 让尾节点的指针域，指向新节点
-    pos->next = new_node;
+    // b. 把数据给入新节点数据域
+    new_node->data = new_data;
+
+    // c. 修改指针（不能调换）
+    // 	1. 把头节点的指针域, 赋值给新节点的指针域（偷过来）
+    // 	（让新节点next指向头节点的next）
+    new_node->next = head->next;
+
+    // 	2. 把新节点的地址，赋值给头节点的指针域
+    // 	（让头节点next指向新节点）
+    head->next = new_node;
 
     return 0;
 }
@@ -129,29 +123,25 @@ int link_list_del(int del_data, struct sl_list *head)
     return 1;
 }
 
-int link_list_add(int new_data, struct sl_list *head)
+// 翻转链表
+void turn_list(struct sl_list *head)
 {
-    // a. 给新节点分配一个堆空间
-    struct sl_list *new_node = malloc(sizeof(struct sl_list));
-    if (new_node == NULL)
+    struct sl_list *end_node, *pos, *pos_temp;
+    end_node = head;
+    while (end_node->next)
+        end_node = end_node->next;
+
+    for (pos = head->next; pos != end_node; pos = pos_temp)
     {
-        perror("new_node malloc failed");
-        return 1;
+        // （移动：删除节点+添加新节点）
+        //（温馨提示：需要记录pos的后节点地址，否则被释放了不能访问了）
+        // 直到移动到pos_tail位置，停止
+        pos_temp = pos->next; // 记录后一个节点地址（指针域）
+        // 插入节点到链表尾(头插法)
+        link_list_add(pos->data, end_node);
+        // 删除链表头后面的节点
+        link_list_del(pos->data, head);
     }
-
-    // b. 把数据给入新节点数据域
-    new_node->data = new_data;
-
-    // c. 修改指针（不能调换）
-    // 	1. 把头节点的指针域, 赋值给新节点的指针域（偷过来）
-    // 	（让新节点next指向头节点的next）
-    new_node->next = head->next;
-
-    // 	2. 把新节点的地址，赋值给头节点的指针域
-    // 	（让头节点next指向新节点）
-    head->next = new_node;
-
-    return 0;
 }
 
 // 打印链表所有数据（遍历）
