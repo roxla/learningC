@@ -20,6 +20,7 @@
 
     "C_Cpp.clang_format_sortIncludes": true,
     "files.associations": {
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "type_traits": "c"
     }, // 格式化时调整include的顺序（按字母排序）
 }

@@ -279,7 +279,6 @@ int show_pic_full(const char *pathname)
 // 打开LCD
 int open_lcd(void)
 {
-
     lcd_fd = open("/dev/fb0", O_RDWR); //打开LCD文件
     if (lcd_fd == -1)                  //判断lcd_fd是否等于-1,等于（打开失败）
     {
