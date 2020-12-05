@@ -1,0 +1,78 @@
+{
+	"user":	[{
+			"isroot":	1,
+			"id":	"-1",
+			"name":	"root",
+			"pwd":	"123456",
+			"tel":	"-1",
+			"friend":	[],
+			"flight":	[],
+			"cash":	0,
+			"vip":	-1,
+			"twitter":	[]
+		}, {
+			"isroot":	0,
+			"id":	"12345",
+			"name":	"aaa",
+			"pwd":	"123",
+			"tel":	"123456",
+			"friend":	["ccc", "abc"],
+			"flight":	[{
+					"plane":	"A0003",
+					"o_cost":	1300,
+					"cost":	1300
+				}, {
+					"plane":	"A0002",
+					"o_cost":	1200,
+					"cost":	960
+				}],
+			"cash":	19140,
+			"vip":	2,
+			"twitter":	[{
+					"time":	"2020-11-24",
+					"text":	"abc"
+				}]
+		}, {
+			"isroot":	0,
+			"id":	"1234567",
+			"name":	"bbb",
+			"pwd":	"1234",
+			"tel":	"1234567",
+			"friend":	[],
+			"flight":	[],
+			"cash":	100,
+			"vip":	0,
+			"twitter":	[{
+					"time":	"2020-11-25",
+					"text":	"abcabc"
+				}, {
+					"time":	"2020-11-26",
+					"text":	"abcabcaaa"
+				}]
+		}, {
+			"isroot":	0,
+			"id":	"12334",
+			"name":	"ccc",
+			"pwd":	"12345",
+			"tel":	"12345678",
+			"friend":	["aaa"],
+			"flight":	[],
+			"cash":	10,
+			"vip":	0,
+			"twitter":	[{
+					"time":	"2020-11-27",
+					"text":	"abcabcabc"
+				}]
+		}, {
+			"isroot":	0,
+			"id":	"111111",
+			"name":	"abc",
+			"pwd":	"12345",
+			"tel":	"1111",
+			"friend":	["aaa"],
+			"flight":	[],
+			"cash":	0,
+			"vip":	0,
+			"twitter":	[]
+		}]
+}

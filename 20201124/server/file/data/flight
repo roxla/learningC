@@ -1,0 +1,39 @@
+{
+	"flight":	[{
+			"code":	"A0001",
+			"cash":	1200,
+			"num":	50,
+			"s_plane":	"HZ",
+			"e_plane":	"GZ",
+			"type":	"J-20",
+			"time":	"09:00 PM",
+			"date":	"2020-10-25"
+		}, {
+			"code":	"A0002",
+			"cash":	600,
+			"num":	49,
+			"s_plane":	"HZ",
+			"e_plane":	"SH",
+			"type":	"F-22",
+			"time":	"09:50 PM",
+			"date":	"2020-10-26"
+		}, {
+			"code":	"A0003",
+			"cash":	1300,
+			"num":	70,
+			"s_plane":	"HZ",
+			"e_plane":	"WH",
+			"type":	"B737",
+			"time":	"05:30 PM",
+			"date":	"2020-11-03"
+		}, {
+			"code":	"A0004",
+			"cash":	600,
+			"num":	50,
+			"s_plane":	"GZ",
+			"e_plane":	"SH",
+			"type":	"A330",
+			"time":	"07:20 AM",
+			"date":	"2020-11-30"
+		}]
+}
