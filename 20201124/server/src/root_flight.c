@@ -50,10 +50,13 @@ void flight_del(pt_uinfo user)
         return;
     }
     // 上锁
+    char flg_name[10];
     pthread_mutex_lock(&m);
     // 修改指向
     list_del(pos);
     // 释放堆空间
+    memset(flg_name, '\0', sizeof(flg_name));
+    strncpy(flg_name, flg_node->code, 5);
     free(flg_node);
     // 修改航班数
     p_manager->count--;
@@ -64,6 +67,24 @@ void flight_del(pt_uinfo user)
     // 发送提示
     snprintf(tip_cli, sizeof(tip_cli), "删除成功!\n");
     send(user->connfd, tip_cli, strlen(tip_cli), 0);
+
+    // 给所有拥有该航班的在线用户发送提示
+    snprintf(tip_cli, sizeof(tip_cli), "航班%s已下线，请前去改签或退票!\n", flg_name);
+    pt_uinfo get_node, n;
+    pt_myflg flg_pos;
+    list_for_each_entry_safe(get_node, n, &boss->head->list, list)
+    {
+        for (flg_pos = get_node->myflg->next; flg_pos != NULL; flg_pos = flg_pos->next)
+        {
+            if (!strncmp(flg_pos->flight, flg_name, 5))
+            {
+                if (get_node->connfd != -1)
+                {
+                    send(get_node->connfd, tip_cli, strlen(tip_cli), 0);
+                }
+            }
+        }
+    }
 }
 
 void flight_add(pt_uinfo user)
