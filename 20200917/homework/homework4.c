@@ -36,8 +36,7 @@ int main(void)
     {
         if (num > 1)
         {
-            comp(num);
-            num--;
+            comp(num--);
         }
         else
         {

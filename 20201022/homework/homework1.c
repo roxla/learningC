@@ -9,7 +9,7 @@ typedef struct sc_list
 
     // 2.指针域
     struct sc_list *next;
-
+    
 } node_st, *node_pt;
 
 // 初始化单向循环链表
@@ -27,7 +27,7 @@ int main(int argc, char const *argv[])
     node_pt head = link_list_init();
 
     // 初始化
-    int num, i, pop;
+    int num, i;
     fprintf(stderr, "Pls Input: ");
     scanf("%d", &num);
     while (getchar() != '\n')
@@ -35,21 +35,22 @@ int main(int argc, char const *argv[])
     for (i = num; i > 0; i--)
         link_list_add_tail(i, head);
     // 操作
-    pop = num;
     node_pt pos = head, pos_temp;
+    printf("%d\n",num);
     while (1)
     {
-        if (pop < 3)
+        if(num <= 15)
             break;
         // 3.2 数3（pos走3次，中间如果数到head，再数1次）
-        for (i = 0; i < 3; i++)
+        for (i = 0; i < 9; i++)
         {
             pos = pos->next;
             if (pos == head)
                 pos = pos->next;
         }
+        printf("Kill: %d\n", pos->data);
         link_list_del(pos->data, head);
-        pop--;
+        num--;
     }
 
     link_list_show(head);
@@ -110,7 +111,8 @@ int link_list_del(int del_data, node_pt head)
         return 0;
     }
     // B. 遍历链表，找出待删除数据的地址（需要两个指针同步移动），记录
-    node_pt pos = head->next, pos_prev = head;
+    node_pt pos = head->next;
+    node_pt pos_prev = head;
     for (; pos != head; pos_prev = pos, pos = pos->next)
     {
         if (pos->data == del_data)
@@ -118,12 +120,15 @@ int link_list_del(int del_data, node_pt head)
     }
     // （如果遍历结束没找到，pos指向NULL，结束函数）
     if (pos == head)
-        return 0;
+    {
+        printf("Not Found!\n");
+        return 2;
+    }
     // C. 修改指向即可
     // 让待删除节点的前节点的指针域，指向后节点。
     pos_prev->next = pos->next;
     // D.释放待删除节点的堆空间
-    free(pos);
+    // free(pos);
 
     return 1;
 }
